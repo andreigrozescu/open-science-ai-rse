@@ -3,4 +3,4 @@ mkdocs:
   configuration: mkdocs.yml
 python:
   install:
-    - requirements: environment.yml
+    - requirements: requirements.yml
