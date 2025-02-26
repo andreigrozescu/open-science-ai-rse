@@ -1,7 +1,7 @@
 site_name: Open Science Text Analysis
 repo_url: https://github.com/andreigrozescu/open-science-ai-rse
 theme:
-  name: material
+  name: readthedocs
 
 nav:
   - Home: index.md
@@ -9,3 +9,4 @@ nav:
   - Usage: usage.md
   - API Reference: api.md
   - About: about.md
+
