@@ -1,2 +1,6 @@
 mkdocs
 mkdocs-material
+wordcloud
+nltk
+matplotlib
+

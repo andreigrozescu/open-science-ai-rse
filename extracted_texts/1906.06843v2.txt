@@ -1,0 +1,1411 @@
+
+
+
+
+Predicting Research Trends with Semantic and Neural Networks with an application in Quantum Physics
+
+
+
+
+January 9, 2020
+
+
+
+
+
+MarioKrenn
+
+Vienna Center for Quantum Science & Technology (VCQ)
+
+
+Faculty of Physics
+University of Vienna
+
+Austria
+
+
+
+Institute for Quantum Optics and Quantum Information (IQOQI)
+Austrian Academy of Sciences
+
+Vienna
+Austria
+
+
+
+Department of Chemistry & Computer Science
+University of Toronto
+
+Canada
+
+
+
+Vector Institute for Artificial Intelligence
+
+Toronto
+Canada
+
+
+
+
+AntonZeilinger
+
+Vienna Center for Quantum Science & Technology (VCQ)
+
+
+Faculty of Physics
+University of Vienna
+
+Austria
+
+
+
+Institute for Quantum Optics and Quantum Information (IQOQI)
+Austrian Academy of Sciences
+
+Vienna
+Austria
+
+
+
+Predicting Research Trends with Semantic and Neural Networks with an application in Quantum Physics
+
+
+
+January 9, 2020
+
+
+51CFD748B7306478030BD5C046BC8F25
+arXiv:1906.06843v2[cs.DL]
+
+
+
+
+
+
+GROBID - A machine learning software for extracting information from scholarly documents
+
+
+
+
+
+
+The vast and growing number of publications in all disciplines of science cannot be comprehended by a single human researcher. As a consequence, researchers have to specialize in narrow subdisciplines, which makes it challenging to uncover scientific connections beyond the own field of research. Thus access to structured knowledge from a large corpus of publications could help pushing the frontiers of science. Here we demonstrate a method to build a semantic network from published scientific literature, which we call SEMNET. We use SEMNET to predict future trends in research and to inspire new, personalized and surprising seeds of ideas in science. We apply it in the discipline of quantum physics, which has seen an unprecedented growth of activity in recent years. In SEMNET, scientific knowledge is represented as an evolving network using the content of 750,000 scientific papers published since 1919. The nodes of the network correspond to physical concepts, and links between two nodes are drawn when two physical concepts are concurrently studied in research articles. We identify influential and prize-winning research topics from the past inside SEMNET thus confirm that it stores useful semantic knowledge. We train a deep neural network using states of SEMNET of the past, to predict future developments in quantum physics research, and confirm high quality predictions using historic data. With the neural network and theoretical network tools we are able to suggest new, personalized, out-of-the-box ideas, by identifying pairs of concepts which have unique and extremal semantic network properties. Finally, we consider possible future developments and implications of our findings.
+
+
+
+
+
+INTRODUCTIONA computer algorithm with access to a large corpus of published scientific research could potentially make genuinely new contributions to science. With such a body of knowledge, the algorithm could derive new scientific insights that are unknown to human researchers and note contradictions within existing scientific knowledge [1,2]. This level of automation of science is more in the realm of science-fiction than reality at present. However, algorithms with access to and the capability of extracting semantic knowledge from the scientific literature can be employed in manifold ways to assist scientists and thereby augment scientific progress. As an example, the evaluation of whether an idea is novel or surprising depends crucially on already-existing knowledge. Thus a computer algorithm with the capability to propose new, useful ideas or potential avenues of research will necessarily require access to published scientific literature -which forms at least partially the body of human knowledge in a scientific field.Knowledge can be portrayed using semantic networks that represent semantic relations between concepts in a network [3]. Over the last few years, significant results have been obtained by automatically analyzing the large corpus of scientific literature [4-Figure 1. Creating a semantic network for quantum physics (SEMNET). The nodes represent quantum physical concepts, and the edges (connections between nodes) indicate how frequently two concepts are investigated jointly in the scientific literature. The concept list is created using human-made lists (from Wikipedia categories and quantum physics books) and automatically generated lists using natural language processing tools on 100.000 quantum physics articles from the online preprint repository arXiv (this is indicated by black arrows). An edge between two concepts is drawn when both concepts appear in the abstract of a scientific paper (indicated by blue arrows). The scientific database consists of 750.000 physics papers, 100.000 from arXiv and 650.000 papers published by the American Physical Society (APS) since 1919.
+mini SEMNETPhys. Rev. Lett. 74, 4763 (1995):[…] The fraction of "interaction-free" measurements can be arbitrarily close to 1. Using single photons in a Michelson interferometer, we have performed a preliminary demonstration of some of these ideas. […] Phys. Rev. X 5, 011003 (2015):[…] Measuring temporal correlations of the position of single atoms performing a quantum walk, we observe a 6σ violation of the Leggett-Garg inequality. […] The interaction-free measurement is based on a novel atom transport system, which allows us to directly probe the absence rather than the presence of atoms at a chosen lattice site. […] interaction-free measurement  Human-generated concept lists (from Wikipedia and books) are combined with automatically generated lists (with natural language processing, using RAKE on 100.000 arXiv articles) to generate a list of quantum physics concepts. Each concept forms a link in a semantic network. The edges are formed when two concepts co-appeare in a title or abstract of any of the 750.000 papers (from arXiv and APS). A mini-version of SEMNET is shown, using parts of three articles from APS. Edges carry temporal information of their formation year, which leads to an evolution of the semantic network SEMNET over time.6], including the development of semantic networks in several scientific disciplines.In biochemistry, a semantic network has been built using a well-defined list of molecule names (which correspond to the nodes of the network) and forming edges when two components co-appeare in the abstract of a scientific paper. The network was derived from millions of papers published over 30 years, and the authors identify a more efficient, collective strategy to explore the knowledge network of biochemistry [7,8]. In [9], a semantic network was created using 100.000 papers from astronomy, ecology, economy and mathematics. The nodes represent ideas or concepts (generated through automated generation of key-concepts in large bodies of texts [10]). The authors used the network to draw connections between human innovation process and random walks. In the field of neuroscience, semantic networks have been used to map the landscape of the field [11,12]. Papers from the interdisciplinary journal PNAS have been used to investigate sociological properties such as inter-disciplinary research [13].Here, we show how to build and use a semantic network for quantum physics, which we call SEMNET. It is built from 750.000 scientific papers in physics published since 1919. In the network we identify a number of historic award-winning concepts, indicating that SEMNET carries useful semantic knowledge. The evolution of such a large network allows us to use an artificial neural network for predicting research concepts that scientists will investigate in the next five years. Finally, we demonstrate the power of SEMNET to suggest personalized, novel and unique directions for future research 1 .Our work differs in several aspects from previous semantic networks created from scientific literature. First, we use machine learning to draw conclusions from earlier states to SEMNET's future state, which enables us to make predictions about the future research trends of the discipline. Second, we use network theoretical tools and machine learning to identify pairs of concepts with exceptional network properties. Those concept combinations can be restricted to the research interest of a specific scientist. This ability allows us to not only predict but also suggest uninvestigated concept pairs which human scientifists might not have identified because they are out of the own sub-field, but which have properties that indicate an exceptional relation. They could be a seed of a new, out-of-the-box idea. Third, we apply SEMNET to quantum physics, which has seen an enormouse growth during the last decade due to the potential transformative technologies. The growth can be seen in the establishment of several high-quality journals for quantum research (such as Quantum, npj Quantum Information, IOP's Quantum Science & Technology) and multi-billion dollar fundings from governments and strong involvement of private companies and startups worldwide. The growth rate leads to enormous increase in scientific results and publications, which are difficult to follow for individual researchers -thus quantum physics is an ideal test-bed for SEMNET.
+SEMANTIC NETWORK OF QUANTUM PHYSICSA semantic network, or knowledge network, represents relations between concepts in the form of a network. Now we describe in more detail how the network is built, especially how the concept list is generated and how links are formed. A schematic illustration can be seen in Figure 1, more details in Figure 2. articles that contain a concept or concept pair per year from 1987 to 2017. (a) Newly-emerged concepts and their growth in popularity over a five-year period after emergence. Shown are the strongest growing concepts of a five-year period, which have not been mentioned before that period. (b) Newly-connected pairs of concepts that become strongly influential in the scientific community in a five-year period. Shown are the strongest growing connections of concept pairs that already existed before the connection was drawn, which have not been connected before that period. Many emergent concepts and connections can be related to important discoveries and understandings in quantum science.
+Creation of the concept listWe generate the concept list via two independent methods. First, we use human-made lists of physical concepts. These concepts are compiled from the indices of 13 quantum physics books (which were available to us in a digital form), as well as titles of Wikipedia articles that are linked in a quantum physics category. This human-made collection contains approximately 5000 entries physical concepts.We extend the human-generated list with an automatically generated list of physical concepts. For this, we apply a natural language processing tool called RAKE (Rapid Automatic Keyword Extraction) [14] to the titles and abstracts of approximately 100.000 articles published in quantum physics categories on the arXiv preprint server, which we chose to optimize the list for current research topics in quantum physics. RAKE is based on statistical text analysis, and can automatically find relevant keywords in texts. We combine the human-and machine-generated lists of concepts and further optimize them to delete incorrectly identified concepts (which were introduced by imperfections of the statistical analysis of RAKE) and names of people (which are not concepts), merge synonyms and normalize for the singular and plural of the same concept. Ultimately, this yields a list of 6,300 terms. As an example, five randomly chosen examples are three level system, photon antibunching, chemical shift, neutron radiation and unconditionally secure quantum bit commitment. Each of these quantum physics concepts is a node in SEMNET.
+Creation of the networkTo form connections between different quantum physics concepts, we use 100.000 articles of quantum physics categories on arXiv, and the dataset of all 650,000 articles ever published by the APS. We chose these two data sources because the APS database contains peer-reviewed physics papers from the last 100 years (allowing for investigation of long-term trends), while the arXiv database contains specific quantum physics papers, allowing for more precise coverage of the quantum physics research trends.Whenever two concepts occur together in a title or an abstract of an article, we interpret that as a semantic connection between these concepts, and add a unique link between the two corresponding nodes in the network. Relations between two concepts can take many forms. Concepts may be put together for example when mathematical tool (such as Schmidt rank ) is used to investigate a specific quantum system (such as vector beam or exciton polariton), or when insights from a specific technique (such as lasing without inversion or rabi oscillation) lead to conclusions about another property (such as transport property or atom transition frequency) or when fundamental ideas (such as quantum decoherence or quantum energy teleportation) are studied in the context of foundational experiments (such as delayed choice experiment or Mermin inequality). While this method clearly cannot represent all quantum physics knowledge, it represents elements of its semantic structure, which we demonstrate in what follows. The resulting network SEMNET has 6368 vertices with more than 1.7 million edges (drawn from more than 15 million concept pairs pulled from 750.000 physics articles), using physics articles from 1919 to december 2017.
+RESULTS
+Past quantum physics trendsFirst, we use the evolution of the semantic network to identify impactful emerging fields of research in the past. We define emerging fields as either concepts or concept pairs which have grown significantly after they have been introduced or connected for the first time, over periods of five years.Figure 3a shows the quantum physics topics that have grown the fastest (in terms of numbers of papers in which they have been mentioned) after their emergence, from the years 1987 to 2017. Figure 3b shows, for each year, which two-concept combinations have grown the fastest in the first five years after they have been first connected. In Figure 3, many of the emerging fields clearly correspond to important discoveries, advances in understanding and shifts of thought within quantum science research. One of the fastest growing concepts is Qubit, which emerged in 1995 (first in april in a Phys.Rev.A paper by Schumacher [15], then in arXiv preprints by Chuang&Yamamoto [16] and by Knill [17,18]). Qubits are the basic units of quantum information -generalizing classical bits to coherent quantum superpositions, and connect quantum mechanics and information science. The emergence of the qubit can be interpreted as the start of the discipline of quantum information science. Enormous growth is seen for topics connected to graphene, starting in 2005, the discoverers of which were awarded the 2010 Nobel Prize in Physics. Interesting, graphene itself was mentioned (in our data collection) already back in the early 1990s in Phys.Rev.B papers [19][20][21], when it was not a strongly emergent concept itself. Strong growth in research into topological materials can be observed from approximately 2008; the Nobel Prize in Physics was subsequently awarded in this area in 2016. Aaronson's and Arkhipov's approach to achieving quantum supremacy [22] using linear photonic networks, termed BosonSampling [23], achieved considerable attention (with more than 600 citations since its introduction in 2011, and considerable experimental efforts into this directions). Since 2012, the application of machine learning to quantum physics has become a prominent and diverse topic of research, that falls under the umbrella of quantum machine learning (recently summarized in two prominent reviews [24,25], and also observable by the foundation of a novel high-quality journal for this topic, Springer Quantum Machine Intelligence). These findings confirm that SEMNET contains useful semantic information.
+Predictive ability of the SEMNETHaving used SEMNET to study past quantum trends, we investigate its ability to provide projections of knowledge developments in the future. This essential question in network science is called linkprediction problem, and asks which new link will be formed between unconnected vertices of the network in the future given the current state of the network (for a detailed investigation of the link-prediction problem in network theory, see [26]). We apply this problem in the context of semantic networks which are generated from published scientific literature. In the present case looking at the field of quantum physics, we ask which two concepts that have not yet been studied together might be investigated together in a scientific article over the next five years. To answer this question, we use an artificial neural network, with four fully connected layers (two hidden layers). The structure of the neural network and its training is shown in Figure 4. Its task is to rank all unconnected pairs of concepts (roughly 5% of all edges have been drawn by the end of 2017), starting with the pair that is most likely to be connected five years, up to the pair that most likely stays unconnected. Ultimately we want to apply the neural network to the current SEMNET and predict the future trends. To validate its quality, we first input to the neural network past states of SEMNET (for example, containing data only up to 2002), and train it to predict new links by 2007. After the training, we apply this network on 2007 data and validate its quality for data of the year 2012 (which it has never seen before).The semantic network is very large (consisting of 6368×6368 entries for each year, which are the number of possible connections between the 6368 quantum physics concepts, compared to 28×28 pixels for the famous MNIST dataset of handwritten images, and 256×256 pixels for ImageNet [27]), and involves combinatorial, graph-based information which are more structured than images (see for example [28]). For that reason, it is an unsuitable direct input to the neural network. Instead, we compute semantic network properties for each pair of concepts. For each pair of concepts (c i , c j ) that are unconnected in SEMNET, we calculate 17 network properties p i,j = (p 1 i,j , p 2 i,j , . . . , p 17 i,j ) where p k i,j ∈ R. Here, p 1 i,j and p 2 i,j are the degrees of concept c i and c j , and p 3 i,j and p 4 i,j are the numbers of papers in which they are mentioned. While these four properties are purely local, p 5 i,j is the cosine-similarity between the two concepts, which corresponds to the number of common neighbors. A cosine similarity of one indicates that the terms might be synonyms. The next nine properties indicate the number of paths with lengths of two, three and four between the physics concepts in the current and previous two years. These properties allow us to draw conclusions from the evolution over time of various topics as tracked by SEMNET. The choice to use large path lengths as one of the properties is strengthened by a very recent observation that the paths of length 3 (L3) are crucial for link prediction tasks in a network for protein interactions [29]. Finally, the last three properties correspond to three different measures of distance between the two concepts. More details can be seen in the SI.We explain these properties on a concrete pair of concepts, interaction-free measurement and Leggett-Garg inequality. (We chose the example randomly, from unconnected concepts that had been mentioned Quantifying the prediction quality of the neural network regarding whether unconnected pairs will be connected within 5 years, using a receiver operating characteristic (ROC) curve. The y-axis shows the true-positive (TP) rate (rate of pairs that have been correctly identified to be connected within 5 years). The x-axis shows the false positive (FP) rate of predictions -concept pairs that have falsely been predicted to be connected. We restrict ourselves to concept pairs which share less than 20% of their neighbors, to prevent predictions of terms with similar semantical meaning. A perfect neural network would have TP = 1 while FP = 0. A network that classifies 50% of true instances correctly, and misclassifies 10% false instance as true would have TP = 0.5 and FP = 0.1. A random classifier is incorrect half the time and thus lies along the diagonal. The area under the curve (AUC) for a perfect neural network is 1, while for random predictions, it is AUC = 0.5. The AUC can be interpreted as the probability that the neural network will rank a randomly chosen true instance higher than a randomly-chosen negative instance [30]. The ROC validation curves for 1995, 2005 and 2017 (trained with SEMNET using data from only 1990, 2000 and 2012 and earlier, respectively) are consistently and significantly non-random, with AUC2017 = 0.85. These results show that the neural network can learn to predict future research interests in quantum physics, based on historical information to a high accuracy.individually more than 30 times.) The concept c 2526 represents "interaction-free measurement which is mentioned in 60 abstracts and has 135 connections to other concepts by 2012. The concept c 2819 represents the "Leggett-Garg inequality", which occurs in 33 abstracts and has 141 connections to other concepts by the end of 2012. These two concepts were not connected in SEMNET as of 2012, therefore, the 15th property, their network distance, is p 15 2526,2819 = 2 (neighbors have a distance of one, in other words, there is a direct path connecting them of length one). In 2012, the two concepts have a cosine-similarity p 5  2526,2819 = 0.228, meaning that 22.8% of their neighbors are shared. Two years later, in 2014 an article on arXiv mentioned both of these concepts in the abstract and the work was later published [31] and featured [32] in the high-impact journal Physical Review X, achieving approximately 100 citations within four years. This example indicates that drawing first connections between concepts can lead to significant scientific insights.The 17 properties for each unconnected concept pair in SEMNET are used by the neural network to estimate which pairs of quantum physics concepts are likely to be connected within 5 years and which are not.To quantify the quality of the predictions, we employ a commonly-used technique called the receiver operating characteristic (ROC) curve [30]. For this, the neural network is used to classify unconnected nodes into two sets: one set that is connected after five years, and a set that is non-connected. Figure 4 shows a significant ability to predict connections between pairs of topics -even through we restrict ourselves to pairs that share less than 20% of their neighbors (to prevent predictions of concepts which have similar meaning). This indicates that even research that draws new connections between concepts, can be predicted with high quality.
+PROPOSING FUTURE RESEARCH TOPICSNext, we attempt to use SEMNET and the artificial neural network to suggest new, potentially fruitful research directions in quantum physics. While it is interesting and useful to understand future trends, it potentially cannot by itself lead to surprising or out-of-the-box ideas (otherwise they would not be predictable). Therefore, we extend our previous approach with network theoretic tools, to identify concept pairs with exceptional network-theoretic properties. Furthermore. Since science is conducted by (groups of) individual scientists, suggestions for proposed new research directions need to be personalized (otherwise, we would obtain suggestions for topics in which nobody is an expert in -which may be potentially interesting but limited in applicability).How do we obtain suggestions for an individual scientist? What we find interesting and surprising strongly depends on what we already know. To gauge that, we need to investigate a given scientist's previously-published body of research papers and extract a list of concepts (from the concept list generated before) that define that person's personal research agenda(s). We define key concepts as concepts investigated over-proportionally often by the scientist, compared to the relative frequency of that concept in all 750.000 papers. Each concept c i in the papers authored by the scientist has a probability p scientist (c i ) that we calculate by the the number of occurrences of the concept N (c i ) divided by the sum of occurrences of all concepts, which isp scientist (c i ) = N (ci) j N (cj ) .Each concept also has a probability of occuring in all 750.000 papers that we use, written as p total (c i ) = Prediction-Degree-Similarity of 100.000 personalized Concept Pairs One axis is the neural network predictions of whether two unconnected points will be connected in 2022 (the predictions -0.5 stand for very unlikely, 0.5 is very likely). The y-axis represents the average (normalized) degree of the pair (the concept with the highest degree in the complete network has a degree of 1). The z-axis is the cos-similarity, which is the ratio of shared neighbors in the networks of the two concepts. The color of the dots represents the distance from the most common, average point in this space -darker dots are further away from the average. Outliers represent pairs of concepts with a unique network property, which make them ideal candidate suggestions.
+M (ci)j M (cj ) , where M (c i ) is the number of occurrences of the concept c i in all 750.000 articles. The ratio r scientist (c i ) = pscientist(ci)p total (ci)indicates the research agenda of the scientist. A value of r scientist (c i ) > 1 shows that the scientist investigates the concept c i overproportionally often.Our approach is to identify personalized suggestions of pairs of concepts that have never been connected. The concepts with r scientist (c i ) > 1 value are paired with all of the other 6.368 concepts. This translates to a list of potentially 100.000s of possible topic pairs. For further usability, we introduce a way to sort the candidate suggestions. Suggestions can be sorted by identifying concept pairs with unique and unusual properties. For each pair of concepts, we have already calculated 18 different network properties: 17 properties which have been used by the neural network for generating predictions, and the prediction value itself. Together, these properties define a multi-dimensional space in which the location of each concept pair depends on its network properties.To identify unusual and unique concept pairs, we search for outliers in this high-dimensional space. An outlier indicates a pair of concepts that is uniquely located in the space, and thus has unique properties in the semantic SEMNET network. We can visualize, for an anonymous example scientist, a 3-dimensional projection of the high-dimensional space in Fig. 6. There, every dot corresponds to a concept pair which is located according to its network properties. Outliers can be identified by the darkness of their color.A few suggestion from SEMNET, for the example scientist: Some of the highest predicted pairs 
+OUTLOOKMachine Learning -Graph-based machine learning models, which have been studied in recent years, could improve prediction qualities in the linkprediction task, for example see [28,33,34]. Furthermore, as SEMNET represents a time evolution of quantum physics' semantic network, applying efficient tools for handling time-dependent data, such as a long short-term memory [35] might further significantly improve the prediction quality. Application of techniques from machine translation could be beneficial to introduce multiple classes of connections within semantic networks [36]. Additionally, combining our approach with unsupervised embedding of scientific literature, as shown in [37] could lead to interesting, dynamic networks.Network Theory and Science of Science -Currently, SEMNET represents connections between concepts that appear in the scientific literature. This is of course a vast simplification of scientific knowledge, as concepts in natural languages can have a manifold of relations [38]. An extension could employ more complex structures for knowledge representation, such as hyper-graphs [39]. The concept list, which represents the nodes of SEMNET, can be improved by various different, sophisticated ways for generating of lists of concepts and categories [10,40]. The extension to combinations of more than pairs of concepts will lead to more complex knowledge representations. Furthermore, it would be insightful to fold into the semantic network numbers of article citations, which is, at least in the field of science, frequently used as a proxy for scientific impact (see [41][42][43], for example). This may enable the prediction of future research directions to be made taking into consideration the highest potential impact, potentially accelerating the evolution of individual scientific knowledge [44,45].Surprisingness -In this work, we place pairs of concepts in an abstract high-dimensional space and identify outliers that have unique and potentially valuable properties. It would be interesting to apply more, and different measures of surprisingness. An interesting example is the information-based Bayesian surprise function, which has been introduced in the context of human attention [46] and successfully applied to the subfield of computational creativity [47,48]. In order to achieve further progress, it would be important to further explore and genuinely understand what human scientists consider as surprising and creative.
+DISCUSSIONWe show how to create a semantic network in the field of quantum physics, demonstrate its useage to predict future trends in the field and how it can be used to suggest pairs of concepts, which are not yet investigated jointly, but have distinct network properties. We show how to filter the suggestions for the research agends of an individual scientist. The approach presented here is independent of the discipline of science. As such it can be applied to other fields of research.This can be interpreted as one potential road towards computer-inspired science, in the following sense: We imagine cases (which we believe is possible) where SEMNET produces seeds or inspirations of unusual ideas or directions of thoughts, that a researcher alone might not have thought of. The subsequent, successful interpretation and scientific execution of the suggestions fully remains the task of a creative, human scientist.
+ACKNOWLEDGEMENTSMK thanks James A. Evans and Sasha Belikov for exciting discussions of metaknowledge research and automation of science, and Jacob G. Foster for a short but influencial conversation at the International Symposium on Science of Science 2016. Furthermore, we would like to acknowledge Nora Tischler, Armin Hochrainer, Robert Fickler, Radek Lapkiewicz, Manuel Erhard and Philipp Haslinger for many in-The neural network receives 17 network theoretical properties from SEMNET, which we detail here. For a concept c i and c j , the vector p i,j = (p 1 i,j , p 2 i,j , . . . , p 17 i,j ) corresponds to 17 real valued numbers. SEMNET of a specific year Y corresponds to an adjacency matrix, which we denote as AdjM Y .• p 1 i,j = deg(ci) max k (deg(c k )) ∈[0,1]: normalized degree centrality of first concept c i (normalized by largest degree centrality in the concept list), i.e. with how many other concept is c i connected divided by the connection numbers of the concept with most neighboring concepts.• p 2 i,j = deg(cj ) max k (deg(c k )) ∈[0,1], normalized degree centrality of second concept c j .• p 3 i,j = #(ci) max k (#(c k )) ∈[0,1], number of titles and abstract that concept c i occures (normalized by number of concept that occures in most articles.• p 4 i,j = #(cj ) max k (#(c k )) ∈[0,1], number of titles and abstract that concept c j occures (normalized by number of concept that occures in most articles.• p 5 i,j = AdjM 2 Y √ deg(ci)•deg(cj )∈[0,1], ratio of common neighbors, also known as cosine similarity.• p 6 i,j = AdjM 2 Y (ci,cj ) max k,l AdjM 2 Y (c k ,c l )∈[0,1], paths of length=2 between c i and c j normalized by pair with largest number of paths, at year Y . 1], paths of length=2 between c i and c j normalized by pair with largest number of paths, at year Y − 1. 1], paths of length=2 between c i and c j normalized by pair with largest number of paths, at year Y − 2. ], paths of length=3 between c i and c j normalized by pair with largest number of paths, at year Y . 1], paths of length=3 between c i and c j normalized by pair with largest number of paths, at year Y − 1. 1], paths of length=3 between c i and c j normalized by pair with largest number of paths, at year Y − 2.• p 7 i,j = AdjM 2 Y −1 (ci,cj ) max k,l AdjM 2 Y −1 (c k ,c l ) ∈[0,• p 8 i,j = AdjM 2 Y −2 (ci,cj ) max k,l AdjM 2 Y −2 (c k ,c l ) ∈[0,• p 9 i,j = AdjM 3 Y (ci,cj ) max k,l AdjM 3 Y (c k ,c l ) ∈[0,1• p 10 i,j = AdjM 3 Y −1 (ci,cj ) max k,l AdjM 3 Y −1 (c k ,c l ) ∈[0,• p 11 i,j = AdjM 3 Y −2 (ci,cj ) max k,l AdjM 3 Y −2 (c k ,c l ) ∈[0,• p 12 i,j = AdjM 4 Y (ci,cj ) max k,l AdjM 4 Y (c k ,c l )∈[0,1], paths of length=4 between c i and c j normalized by pair with largest number of paths, at year Y . 1], paths of length=4 between c i and c j normalized by pair with largest number of paths, at year Y − 1. 1], paths of length=4 between c i and c j normalized by pair with largest number of paths, at year Y − 2.• p 13 i,j = AdjM 4 Y −1 (ci,cj ) max k,l AdjM 4 Y −1 (c k ,c l ) ∈[0,• p 14 i,j = AdjM 4 Y −2 (ci,cj ) max k,l AdjM 4 Y −2 (c k ,c l ) ∈[0,• p 15 i,j = distance(c i , c j ) ∈ N, network distance between c i and c j .• p 16 i,j = W eightedDistance( √ deg(c k )•deg(c l ) AdjM Y (c k ,c l ) ) ∈[0,1], weighted network distance between c i and c j (normalized by largest value of all pairs). Intuition: The more connections between certain edges, the easier it to transition from the one to the other.• p 17 i,j = W eightedDistance( deg(c k )•deg(c l ) AdjM Y (c k ,c l ) ) ∈[0,1], different normalized weighted network distance between c i and c j . Intuition: The more connections between certain edges, the easier it to transition from the one to the other.
+FUTURE SUGGESTIONS FROM SEMNETHere we show a number of future suggestions with different parameter settings. These pairs of concepts are network-theoretically distinguished, and they couldd be inspirations for the creative, human scientist. The concept list used here is unrestricted, meaning not tailored for a specific scientist's research interest.
+General ConceptsUnrestricted; Highest predicted values: The neural network receives 17 network theoretical properties from SEMNET, which we detail here. For a concept c i and c j , the vector p i,j = (p 1 i,j , p 2 i,j , . . . , p 17 i,j ) corresponds to 17 real valued numbers. SEMNET of a specific year Y corresponds to an adjacency matrix, which we denote as AdjM Y .• p 1 i,j = deg(ci) max k (deg(c k )) ∈[0,1]: normalized degree centrality of first concept c i (normalized by largest degree centrality in the concept list), i.e. with how many other concept is c i connected divided by the connection numbers of the concept with most neighboring concepts.  • p 15 i,j = distance(c i , c j ) ∈ N, network distance between c i and c j . AdjM Y (c k ,c l ) ) ∈[0,1], weighted network distance between c i and c j (normalized by largest value of all pairs). Intuition: The more connections between certain edges, the easier it to transition from the one to the other.
+• p 17i,j = W eightedDistance( deg(c k )•deg(c l ) AdjM Y (c k ,c l ) ) ∈[0,1], different normalized weighted network distance between c i and c j . Intuition: The more connections between certain edges, the easier it to transition from the one to the other.
+FUTURE SUGGESTIONS FROM SEMNETHere we show a number of future suggestions with different parameter settings. These pairs of concepts are network-theoretically distinguished, and they couldd be inspirations for the creative, human scientist. The concept list used here is unrestricted, meaning not tailored for a specific scientist's research interest.. A 88, 023812 (2013): We study the quantum dynamics of a Michelson interferometer with Fabry-Perot cavity arms and one movable end mirror, and driven by a single photonan optomechanical device previously studied by Marshall et al. as a device that searches for gravity decoherence. [...] Fabry-Perot cavity
+Figure 2 .2Figure 2. Diagrammatic inner working of SEMNET.
+Figure 3 .3Figure 3. The evolution of quantum physics research observed using SEMNET, reflected in the change in number of
+Figure 4 .4Figure 4. Artificial Neural Network for predicting the future of quantum physics research, using the evolution of the semantic network SEMNET. For each unconnected pair of concepts at a specific year, we derive a vector of 17 network properties (such as distance or cosine similarity). In the training phase, we input these network properties into an artificial neural network, and ask the question whether they will be connected 5 years later. SEMNET of 2017 is used for supervision. After training, we can apply the neural network to SEMNET of 2017, and ask what will have happend until the year 2022.
+Figure 5 .5Figure5. Quantifying the prediction quality of the neural network regarding whether unconnected pairs will be connected within 5 years, using a receiver operating characteristic (ROC) curve. The y-axis shows the true-positive (TP) rate (rate of pairs that have been correctly identified to be connected within 5 years). The x-axis shows the false positive (FP) rate of predictions -concept pairs that have falsely been predicted to be connected. We restrict ourselves to concept pairs which share less than 20% of their neighbors, to prevent predictions of terms with similar semantical meaning. A perfect neural network would have TP = 1 while FP = 0. A network that classifies 50% of true instances correctly, and misclassifies 10% false instance as true would have TP = 0.5 and FP = 0.1. A random classifier is incorrect half the time and thus lies along the diagonal. The area under the curve (AUC) for a perfect neural network is 1, while for random predictions, it is AUC = 0.5. The AUC can be interpreted as the probability that the neural network will rank a randomly chosen true instance higher than a randomly-chosen negative instance[30]. The ROC validation curves for 1995,
+Figure 6 .6Figure 6. Personalized prediction of topic pairs that could form future research directions for a given scientist. Each dot represents one unconnected pair of physical concepts. The concepts in use are filtered by a scientist's previous research agenda (see main text). The dot is placed in a threedimensional space, which is proscribed by the properties of SEMNET and the predictions of the neural network.
+(from Top10) are orbital angular momentum & magnetic skyrmion, spin orbit coupling & quantum sensing or dicke model & cloning, filtered for highly predicted, uncommon pairs (cosine similarity < 0.03; from Top10): topos theory & cyclic operation, critical exponent & reed muller code, quantum key distribution & adhm construction. Unrestricted concept lists (normalized concept degree < 0.1; from Top10): atom cavity system & mode volume, entanglement of formation & multiqubit state, neutrino oscillation & dark photon. For more examples, see SI.
+• p 2 i2,j = deg(cj ) max k (deg(c k )) ∈[0,1], normalized degree centrality of second concept c j . • p 3 i,j = #(ci) max k (#(c k )) ∈[0,1], number of titles and abstract that concept c i occures (normalized by number of concept that occures in most articles.• p 4 i,j = #(cj ) max k (#(c k )) ∈[0,1], number of titles and abstract that concept c j occures (normalized by number of concept that occures in most articles.
+2 Y 3 Y 4 Y234)•deg(cj ) ∈[0,1], ratio of common neighbors, also known as cosine similarity. (ci,cj ) max k,l AdjM 2 Y (c k ,c l )∈[0,1], paths of length=2 between c i and c j normalized by pair with largest number of paths, at year Y .• p 7 i,j = AdjM 2 Y −1 (ci,cj ) max k,l AdjM 2 Y −1 (c k ,c l ) ∈[0,1], paths of length=2 between c i and c j normalized by pair with largest number of paths, at year Y − 1.• p 8 i,j = AdjM 2 Y −2 (ci,cj ) max k,l AdjM 2 Y −2 (c k ,c l ) ∈[0,1], paths of length=2 between c i and c j normalized by pair with largest number of paths, at yearY − 2. (ci,cj ) max k,l AdjM 3 Y (c k ,c l ) ∈[0,1], paths of length=3 between c i and c j normalized by pair with largest number of paths, at year Y .• p 10 i,j = AdjM 3 Y −1 (ci,cj ) max k,l AdjM 3 Y −1 (c k ,c l ) ∈[0,1], paths of length=3 between c i and c j normalized by pair with largest number of paths, at year Y − 1.• p 11 i,j = AdjM 3 Y −2 (ci,cj ) max k,l AdjM 3 Y −2 (c k ,c l ) ∈[0,1], paths of length=3 between c i and c j normalized by pair with largest number of paths, at yearY − 2. (ci,cj ) max k,l AdjM 4 Y (c k ,c l )∈[0,1], paths of length=4 between c i and c j normalized by pair with largest number of paths, at year Y .• p 13 i,j = AdjM 4 Y −1 (ci,cj ) max k,l AdjM 4 Y −1 (c k ,c l ) ∈[0,1], paths of length=4 between c i and c j normalized by pair with largest number of paths, at year Y − 1.• p 14 i,j = AdjM 4 Y −2 (ci,cj ) max k,l AdjM 4 Y −2 (c k ,c l ) ∈[0,1], paths of length=4 between c i and c j normalized by pair with largest number of paths, at year Y − 2.
+• p 16 i16,j = W eightedDistance( √ deg(c k )•deg(c l )
+Code and details: https://github.com/MarioKrenn6240/ SEMNET
+
+
+
+teresting discussion on related topics. The authors also thank the APS (American Physical Socienty) for providing access to the database of all published articles in APS journals. The authors thank Xuemei Gu for the illustrations of Figure 1 and 4. This work was supported by the Austrian Academy of Sciences ( ÖAW), University of Vienna via the project QUESS and the Austrian Science Fund (FWF) with SFB F40 (FOQUS) and the Erwin Schrödinger fellowship No. J4309.
+
+
+Supplementary Information
+NETWORK THEORETICAL PROPERTIES USED FOR PREDICTIONS 
+
+
+
+
+Advancing science through mining libraries, ontologies, and communities
+
+JAEvans
+
+
+ARzhetsky
+
+
+
+Journal of Biological Chemistry
+
+286
+
+2011
+
+
+
+
+
+Darpa sets out to automate research
+
+JYou
+
+
+
+Science
+
+347
+465
+2015
+
+
+
+
+
+Semantic networks in artificial intelligence
+
+FLehmann
+
+
+1992
+Elsevier Science Inc
+
+
+
+
+
+
+
+JAEvans
+
+
+JGFoster
+
+
+Metaknowledge
+
+
+
+Science
+
+331
+
+2011
+
+
+
+
+
+The science of science: From the perspective of complex systems
+
+AZeng
+
+
+ZShen
+
+
+JZhou
+
+
+JWu
+
+
+YFan
+
+
+YWang
+
+
+HEStanley
+
+
+
+Physics Reports
+
+714
+
+2017
+
+
+
+
+
+Uzzi and others, Science of science
+
+SFortunato
+
+
+CTBergstrom
+
+
+KBörner
+
+
+JAEvans
+
+
+DHelbing
+
+
+SMilojević
+
+
+AMPetersen
+
+
+FRadicchi
+
+
+RSinatra
+
+
+B
+
+
+
+Science
+
+359
+185
+2018
+
+
+
+
+
+Tradition and innovation in scientists' research strategies
+
+JGFoster
+
+
+ARzhetsky
+
+
+JAEvans
+
+
+
+American Sociological Review
+
+80
+
+2015
+
+
+
+
+
+Choosing experiments to accelerate collective discovery
+
+ARzhetsky
+
+
+JGFoster
+
+
+ITFoster
+
+
+JAEvans
+
+
+
+Proceedings of the National Academy of Sciences
+
+112
+
+2015
+
+
+
+
+
+Network dynamics of innovation processes
+
+IIacopini
+
+
+SMilojević
+
+
+VLatora
+
+
+
+Physical review letters
+
+120
+48301
+2018
+
+
+
+
+
+Quantifying the cognitive extent of science
+
+SMilojević
+
+
+
+Journal of Informetrics
+
+9
+
+2015
+
+
+
+
+
+Mapping the semantic structure of cognitive neuroscience
+
+EBeam
+
+
+LGAppelbaum
+
+
+JJack
+
+
+JMoody
+
+
+SAHuettel
+
+
+
+Journal of cognitive neuroscience
+
+26
+
+2014
+
+
+
+
+
+The landscape of NeuroImage-ing research
+
+JDDworkin
+
+
+RTShinohara
+
+
+DSBassett
+
+
+
+NeuroImage
+
+183
+
+2018
+
+
+
+
+
+The emergent integrated network structure of scientific research
+
+JDDworkin
+
+
+RTShinohara
+
+
+DSBassett
+
+
+
+PloS one
+
+14
+e0216146
+2019
+
+
+
+
+
+Automatic keyword extraction from individual documents
+
+SRose
+
+
+DEngel
+
+
+NCramer
+
+
+WCowley
+
+
+
+Text Mining: Applications and Theory
+
+1
+20
+2010
+
+
+
+
+
+Quantum coding
+
+BSchumacher
+
+
+
+Physical Review A
+
+51
+2738
+1995
+
+
+
+
+
+Simple quantum computer
+
+ILChuang
+
+
+YYamamoto
+
+
+
+Physical Review A
+
+52
+3489
+1995
+
+
+
+
+
+
+EKnill
+
+Approximation by quantum circuits
+
+1995
+
+
+arXiv preprint quant-ph/9508006
+
+
+
+Bounds for approximation in total variation distance by quantum circuits
+
+EKnill
+
+quant- ph/9508007
+
+1995
+
+
+arXiv preprint
+
+
+
+Two-dimensional weak localization in partially graphitic carbons
+
+VBayot
+
+
+LPiraux
+
+
+JPMichenaud
+
+
+JPIssi
+
+
+MLelaurain
+
+
+AMoore
+
+
+
+Physical Review B
+
+41
+11770
+1990
+
+
+
+
+
+Magnetic-field dependence of the hole-hole interaction in fluorine-intercalated graphite fibers
+
+SDiVittorio
+
+
+MDresselhaus
+
+
+MEndo
+
+
+TNakajima
+
+
+
+Physical Review B
+
+43
+1313
+1991
+
+
+
+
+
+Effective and Debye temperatures of alkali-metal atoms in graphite intercalation compounds
+
+RMoreh
+
+
+NShnieg
+
+
+HZabel
+
+
+
+Physical Review B
+
+44
+1311
+1991
+
+
+
+
+
+Quantum computational supremacy
+
+AWHarrow
+
+
+AMontanaro
+
+
+
+Nature
+
+549
+203
+2017
+
+
+
+
+
+The computational complexity of linear optics
+
+SAaronson
+
+
+AArkhipov
+
+
+2011
+
+
+
+
+
+
+Quantum machine learning
+
+JBiamonte
+
+
+PWittek
+
+
+NPancotti
+
+
+PRebentrost
+
+
+NWiebe
+
+
+SLloyd
+
+
+
+Nature
+
+549
+195
+2017
+
+
+
+
+
+Machine learning & artificial intelligence in the quantum domain: a review of recent progress
+
+VDunjko
+
+
+HJBriegel
+
+
+
+Reports on Progress in Physics
+
+81
+74001
+2018
+
+
+
+
+
+The link-prediction problem for social networks
+
+DLiben-Nowell
+
+
+JKleinberg
+
+
+
+Journal of the American society for information science and technology
+
+58
+
+2007
+
+
+
+
+
+Deep learning
+
+YLecun
+
+
+YBengio
+
+
+GHinton
+
+
+
+nature
+
+521
+436
+2015
+
+
+
+
+
+
+ZWu
+
+
+SPan
+
+
+FChen
+
+
+GLong
+
+
+CZhang
+
+
+PSYu
+
+arXiv:1901.00596
+A comprehensive survey on graph neural networks
+
+2019
+
+
+
+
+
+Hao and others, Network-based prediction of protein interactions
+
+IAKovács
+
+
+KLuck
+
+
+KSpirohn
+
+
+YWang
+
+
+CPollis
+
+
+SSchlabach
+
+
+WBian
+
+
+DKKim
+
+
+NKishore
+
+
+T
+
+
+
+Nature communications
+
+10
+1240
+2019
+
+
+
+
+
+ROC graphs: Notes and practical considerations for researchers
+
+TFawcett
+
+
+
+Machine learning
+
+31
+
+2004
+
+
+
+
+
+Ideal negative measurements in quantum walks disprove theories based on classical trajectories
+
+CRobens
+
+
+WAlt
+
+
+DMeschede
+
+
+CEmary
+
+
+AAlberti
+
+
+
+Physical Review X
+
+5
+11003
+2015
+
+
+
+
+
+Do Quantum Superpositions Have a Size Limit?
+
+GCKnee
+
+
+
+Physics
+
+8
+6
+2015
+
+
+
+
+
+
+YLi
+
+
+DTarlow
+
+
+MBrockschmidt
+
+
+RZemel
+
+arXiv:1511.05493
+Gated graph sequence neural networks
+
+2015
+
+
+
+
+
+
+MNiepert
+
+
+MAhmed
+
+
+KKutzkov
+
+Learning convolutional neural networks for graphs. International conference on machine learning
+
+2014-2023 (2016
+
+
+
+
+
+Long short-term memory
+
+SHochreiter
+
+
+JSchmidhuber
+
+
+
+Neural computation
+
+9
+
+1997
+
+
+
+
+
+Advances in neural information processing systems
+
+AVaswani
+
+
+NShazeer
+
+
+NParmar
+
+
+JUszkoreit
+
+
+LJones
+
+
+ANGomez
+
+
+LKaiser
+
+
+IPolosukhin
+
+
+2017
+
+
+
+Attention is all you need
+
+
+
+Unsupervised word embeddings capture latent knowledge from materials science literature
+
+VTshitoyan
+
+
+JDagdelen
+
+
+LWeston
+
+
+ADunn
+
+
+ZRong
+
+
+OKononova
+
+
+KAPersson
+
+
+GCeder
+
+
+AJain
+
+
+
+Nature
+
+571
+
+2019
+
+
+
+
+
+Knowledge representation and the semantics of natural language
+
+HHelbig
+
+
+2006
+Springer
+
+
+
+
+
+Weaving the fabric of science: Dynamic network models of science's unfolding structure
+
+FShi
+
+
+JGFoster
+
+
+JAEvans
+
+
+
+Social Networks
+
+43
+
+2015
+
+
+
+
+
+Quantitative analysis of the evolution of novelty in cinema through crowdsourced keywords
+
+SSreenivasan
+
+
+
+Scientific reports
+
+3
+2758
+2013
+
+
+
+
+
+Atypical combinations and scientific impact
+
+BUzzi
+
+
+SMukherjee
+
+
+MStringer
+
+
+BJones
+
+
+
+Science
+
+342
+
+2013
+
+
+
+
+
+Coauthorship and citation patterns in the Physical Review
+
+TMartin
+
+
+BBall
+
+
+BKarrer
+
+
+MNewman
+
+
+
+Physical Review E
+
+88
+12814
+2013
+
+
+
+
+
+Inheritance patterns in citation networks reveal scientific memes
+
+TKuhn
+
+
+MPerc
+
+
+DHelbing
+
+
+
+Physical Review X
+
+4
+41036
+2014
+
+
+
+
+
+Quantifying the evolution of individual scientific impact
+
+RSinatra
+
+
+DWang
+
+
+PDeville
+
+
+CSong
+
+
+ALBarabási
+
+
+
+Science
+
+354
+5239
+2016
+
+
+
+
+
+The Formula: The Universal Laws of Success
+
+ALBarabási
+
+
+2018
+Hachette UK
+
+
+
+
+
+Bayesian surprise attracts human attention
+
+LItti
+
+
+PBaldi
+
+
+
+Advances in neural information processing systems
+
+18
+547
+2006
+
+
+
+
+
+
+LRVarshney
+
+
+FPinel
+
+
+KRVarshney
+
+
+DBhattacharjya
+
+
+ASchoergendorfer
+
+
+YMChee
+
+arXiv:1311.1213
+A big data approach to computational creativity
+
+2013
+
+
+
+
+
+A culinary computational creativity system
+
+FPinel
+
+
+LRVarshney
+
+
+DBhattacharjya
+
+
+
+Computational creativity research: towards creative machines
+
+Springer
+2015
+
+
+
+
+
+
+spin state, rarita schwinger equation
+pred: 0.73427
+
+
+
+
+
+matrix product operator, multi scale entanglement renormalization ansatz
+pred: 0.45618
+
+
+
+
+
+neutron capture nucleosynthesis, european spallation source
+pred: 0.21189
+
+
+
+
+
+pred: 0.20579
+copenhagen interpretation, spekkens toy model cosS: 0.14746
+
+
+
+
+
+copenhagen interpretation, quasi set theory
+pred: 0.20417
+
+
+
+
+
+spin orbit interaction, quantum sensing
+pred: 0.95525
+
+
+
+
+
+spin orbit coupling, quantum sensing cosS: 0
+pred: 0.94077
+
+33201
+
+
+
+
+
+light matter interaction, classical communication
+pred: 0.93416
+
+
+
+
+
+many particle system, inelastic neutron scattering
+pred: -0.97628
+
+
+
+
+
+Unrestricted; maximal outlier (cosS, deg, pred): 1. quantum information, scattering amplitude cosS: 0.49361
+pred: -0.95502
+
+
+
+
+
+NETWORK THEORETICAL PROPERTIES USED FOR PREDICTIONS General Concepts Unrestricted
+
+1
+
+
+Highest predicted values: 1. hybrid system, classical communication cosS: 0.30407, deg: 0.22924, pred
+
+
+
+spin orbit interaction, quantum sensing
+pred: 0.95525
+
+
+
+
+
+spin orbit coupling, quantum sensing cosS: 0
+pred: 0.94077
+
+33201
+
+
+
+
+
+light matter interaction, classical communication
+pred: 0.93416
+
+
+
+
+
+spin state, rarita schwinger equation
+pred: 0.73427
+
+
+
+
+
+matrix product operator, multi scale entanglement renormalization ansatz
+pred: 0.45618
+
+
+
+
+
+Highest predicted values: 1. self pulsing, laser printing
+pred: 0.22185
+
+
+
+
+
+neutron capture nucleosynthesis, european spallation source
+pred: 0.21189
+
+
+
+
+
+pred: 0.20579
+copenhagen interpretation, spekkens toy model cosS: 0.14746
+
+
+
+
+
+copenhagen interpretation, quasi set theory
+pred: 0.20417
+
+
+
+
+
+spin orbit interaction, quantum sensing
+pred: 0.95525
+
+
+
+
+
+spin orbit coupling, quantum sensing cosS: 0
+pred: 0.94077
+
+33201
+
+
+
+
+
+light matter interaction, classical communication
+pred: 0.93416
+
+
+
+
+
+many particle system, inelastic neutron scattering
+pred: -0.97628
+
+
+
+
+
+Unrestricted; maximal outlier (cosS, deg, pred): 1. quantum information, scattering amplitude cosS: 0.49361
+pred: -0.95502
+
+
+
+
+
+pred: -0.95105
+two level system, charge density cosS: 0.51577
+
+
+
+
+
+
+
