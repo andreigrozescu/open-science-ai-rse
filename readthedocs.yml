@@ -4,4 +4,8 @@ mkdocs:
 python:
   install:
     - requirements: requirements.txt
+build:
+  os: ubuntu-20.04  
+  image: latest 
+  use_system_packages: true
 
