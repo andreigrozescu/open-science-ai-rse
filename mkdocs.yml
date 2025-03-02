@@ -7,8 +7,8 @@ nav:
   - Home: index.md
   - Installation: installation.md
   - Usage: usage.md
-  - Output: output.md
   - About: about.md
+  - Scripts: scripts.md
 
 markdown_extensions:
   - admonition
