@@ -12,7 +12,6 @@ This project, developed as part of my Computer Science coursework, focuses on th
 
 The project is designed to extract the data such as figures, links, and metadata from research papers, and it can be run either through Docker or a virtual environment.
 
-[Readthedocs](https://open-science-ai-rse.readthedocs.io/en/latest/)
 
 ## Recommended
 * Ubuntu 22.04
