@@ -4,11 +4,12 @@ theme:
   name: readthedocs
 
 nav:
-  - Home: docs/index.md
-  - Installation: docs/installation.md
-  - Requirements: docs/requirements.md
-  - Scripts: docs/scripts.md
-  - Usage: docs/usage.md
+  - Home: index.md
+  - Installation: installation.md
+  - Usage: usage.md
+  - About: about.md
+  - Scripts: scripts.md
+
 
 
 markdown_extensions:
