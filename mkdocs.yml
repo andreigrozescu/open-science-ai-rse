@@ -1,14 +1,15 @@
 site_name: Open Science Text Analysis
 repo_url: https://github.com/andreigrozescu/open-science-ai-rse
 theme:
-  name: mkdocs
+  name: readthedocs
 
 nav:
-  - Home: index.md
-  - Installation: installation.md
-  - Usage: usage.md
-  - About: about.md
-  - Scripts: scripts.md
+  - Home: docs/index.md
+  - Installation: docs/installation.md
+  - Requirements: docs/requirements.md
+  - Scripts: docs/scripts.md
+  - Usage: docs/usage.md
+
 
 markdown_extensions:
   - admonition

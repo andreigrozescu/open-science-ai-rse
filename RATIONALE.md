@@ -84,7 +84,7 @@ def generate_wordcloud():
 
 #### Verification:
 
-I verified the word cloud generation by manually inspecting the results directory for the wordcloud.png file. Additionally, I reviewed the generated word cloud to check if it accurately reflected the most frequent words in the abstracts.
+I verified the word cloud generation by manually inspecting the results directory for the wordcloud.png file.
 
 
 ### 4. **Count and Visualize the Number of Figures**
@@ -111,10 +111,6 @@ def count_figures():
         plt.close()
         print("Visualización del número de figuras generada.")
 ```
-
-#### Verification:
-
-To verify the accuracy of the figure count, I manually checked the XML files for the `tei:figure` elements and compared the count with the bar chart. I also reviewed the generated `figures_count.png` file to ensure the visualization matched the expected results.
 
 
 ### 5. **Extract and Save Links**
@@ -146,7 +142,7 @@ Links: {" ".join(urls)}
 
 #### Verification:
 
-I verified the extracted links by manually inspecting the `extracted_links.txt` file and cross-referencing the URLs with those present in the XML files. I also ensured that all links were saved correctly in the file.
+I verified the extracted links by manually inspecting the `extracted_links.txt` file and cross-referencing the URLs with those present in the XML files.
 
 
 ## Final Steps:
