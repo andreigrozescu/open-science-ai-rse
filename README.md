@@ -7,6 +7,7 @@ This project, developed as part of my Computer Science coursework, focuses on th
 - **Visualizing the number of figures per article** to understand the use of visuals in research.
 - **Compiling a comprehensive list of links** extracted from the papers, offering a deeper look into the references and connections within the research.
 
+
 The project is designed to extract the data such as figures, links, and metadata from research papers, and it can be run either through Docker or a virtual environment.
 
 
@@ -56,7 +57,7 @@ Once everything is installed, you can run `pip freeze` to check that all depende
 
 # Execution Instructions
 
-To run the program, simply place the articles you want to process in the `papers/` folder. The script will analyze these papers and store the results in the `output/` and `results/` directories.
+To run the program, simply place the articles you want to process in the `papers/` folder. The script will analyze these papers and store the xml results in the `output/` directory, and the keyword clouds, figures and links in the `results/` directory.
 
 Once everything is set up, navigate to the main project folder by running:
 
