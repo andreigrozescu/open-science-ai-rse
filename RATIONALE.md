@@ -28,6 +28,11 @@ with open('scripts/config.json', 'r') as config_file:
 GRODIB_URL = config.get("grobid_url", "http://localhost:8070/api/processFulltextDocument")
 ```
 
+#### Verification:
+
+To verify this step, I checked that the `config.json` file was loaded correctly by manually inspecting the settings. Additionally, I printed the `GRODIB_URL` to ensure that it was being read from the configuration file properly.
+
+
 ### 2. **Process PDF Files**
 The script processes each PDF file in the `papers` folder, sending each one to the Grobid service to extract metadata and abstracts. The extracted XML content is saved in the `output` directory.
 
@@ -43,6 +48,10 @@ def process_pdf(pdf_path):
         print(f"Error al procesar el archivo {pdf_path}: {response.status_code}")
         return None
 ```
+#### Verification:
+
+For verification, I manually checked the output directory to ensure that the XML files were being generated for each processed PDF. I also verified the response status code to confirm that the PDFs were successfully processed by Grobid.
+
 
 ### 3. **Generate Word Cloud**
 Once the XML files are saved, the script parses them to extract abstracts. It concatenates the text of all abstracts to generate a word cloud. The word cloud is then saved as an image in the `results` directory.
@@ -73,6 +82,11 @@ def generate_wordcloud():
         print("Nube de palabras clave generada.")
 ```
 
+#### Verification:
+
+I verified the word cloud generation by manually inspecting the results directory for the wordcloud.png file. Additionally, I reviewed the generated word cloud to check if it accurately reflected the most frequent words in the abstracts.
+
+
 ### 4. **Count and Visualize the Number of Figures**
 The script then counts the number of figures in each article by parsing the XML files and finding `tei:figure` elements. A bar chart is created to visualize the number of figures per article, which is saved in the `results` directory.
 
@@ -97,6 +111,11 @@ def count_figures():
         plt.close()
         print("Visualización del número de figuras generada.")
 ```
+
+#### Verification:
+
+To verify the accuracy of the figure count, I manually checked the XML files for the `tei:figure` elements and compared the count with the bar chart. I also reviewed the generated `figures_count.png` file to ensure the visualization matched the expected results.
+
 
 ### 5. **Extract and Save Links**
 Finally, the script extracts URLs from the bibliographic structures in each XML file. These URLs are saved in a text file in the `results` directory.
@@ -124,6 +143,11 @@ Links: {" ".join(urls)}
 ')
     print("Lista de enlaces extraída y guardada.")
 ```
+
+#### Verification:
+
+I verified the extracted links by manually inspecting the `extracted_links.txt` file and cross-referencing the URLs with those present in the XML files. I also ensured that all links were saved correctly in the file.
+
 
 ## Final Steps:
 The functions `generate_wordcloud()`, `count_figures()`, and `extract_links()` are executed to process the data and generate the desired results.

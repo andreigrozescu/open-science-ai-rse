@@ -1,22 +1,22 @@
-# Analisis de articulos
-[![Documentation Status](https://readthedocs.org/projects/analizador-de-texto/badge/?version=latest)](https://open-science-ai-rse.readthedocs.io/en/latest/)
-[![DOI](https://zenodo.org/badge/756785125.svg)](https://zenodo.org/doi/10.5281/zenodo.10786928)
-## Descripcion  
-Este proyecto hace uso de la herramienta grobid para procesar los distintos articulos que se le proporcione mediante un script escrito en Python que hace de pipeline entre nuestro sistema y el servidor de grobid, una vez generados los documentos XML, genera una nube de palabras o wordcloud mediante la informacion abstracta del XML, muestra el numero de figuras en cada uno de los articulos procesados, y crea una lista de todos los links encontrados en cada articulo.
-## Requisitos
-* Python 3.10.16
-* Grobid
-  
-Para poder utilizar las herramientas proporcionadas en este repositorio se necesitara tener [instalado pyhton 3.10.16](), [instalar grobid](https://grobid.readthedocs.io/en/latest/Install-Grobid/) y tener corriendo un [servidor de grobid](https://grobid.readthedocs.io/en/latest/Grobid-service/)
-## Recomendaciones
+# AI and Open Science in Research Software Engineering
+
+This project, developed as part of my Computer Science coursework, focuses on the intersection of Artificial Intelligence and Open Science in the field of Research Software Engineering. he objective is to apply text analysis techniques to open-access research articles using Grobid. Key tasks include:
+
+- **Extracting and processing the full text** from a set of 10 open-access research papers.
+- **Generating insightful keyword clouds** based on abstracts to visualize key themes.
+- **Visualizing the number of figures per article** to understand the use of visuals in research.
+- **Compiling a comprehensive list of links** extracted from the papers, offering a deeper look into the references and connections within the research.
+
+
+The project is designed to extract the data such as figures, links, and metadata from research papers, and it can be run either through Docker or a virtual environment.
+
+
+## Recommended
 * Ubuntu 22.04
 
-Para el uso de estas herramientas se recomienda el uso de Ubuntu Linux por su facilida para la instalacion y puesta en marcha de todos los recursos proporcionados.
-## Contenido
-- [Instalacion]
-- [Uso]
-- [Scripts]
-## Licencia y contacto
-Distribuido bajo [MIT License](https://opensource.org/license/mit). Ver [LICENSE](hhttps://github.com/andreigrozescu/open-science-ai-rse/blob/main/LICENSE) para mas informacion.
 
-Autor y contacto: Andrei Iulian Grozescu (andrei.grozescu@alumnos.upm.es)
+## License
+Distributed under the [MIT License](https://opensource.org/license/mit). See [LICENSE](hhttps://github.com/andreigrozescu/open-science-ai-rse/blob/main/LICENSE) for more information.
+
+Author: Andrei Iulian Grozescu
+Contact:  (andrei.grozescu@alumnos.upm.es)

@@ -10,6 +10,9 @@ This project, developed as part of my Computer Science coursework, focuses on th
 
 The project is designed to extract the data such as figures, links, and metadata from research papers, and it can be run either through Docker or a virtual environment.
 
+## Recommended
+* Ubuntu 22.04
+
 
 # Setting Up the Environment
 
@@ -142,3 +145,8 @@ docker run --rm --name paper_analysis --network="host"     -v $(pwd)/papers:/app
 - `-v $(pwd)/output:/app/output`: Stores results in the local `output/` folder.
 
 
+## License
+Distributed under the [MIT License](https://opensource.org/license/mit). See [LICENSE](hhttps://github.com/andreigrozescu/open-science-ai-rse/blob/main/LICENSE) for more information.
+
+Author: Andrei Iulian Grozescu
+Contact:  (andrei.grozescu@alumnos.upm.es)
