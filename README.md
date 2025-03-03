@@ -1,5 +1,7 @@
 # AI and Open Science in Research Software Engineering
-
+[![Documentation Status](https://readthedocs.org/projects/open-science-ai-rse/badge/?version=latest)](https://open-science-ai-rse.readthedocs.io/en/latest/?badge=latest)
+[![DOI](https://zenodo.org/badge/10.5281/zenodo.14962610.svg)](https://zenodo.org/doi/10.5281/zenodo.14962610) 
+## Description
 This project, developed as part of my Computer Science coursework, focuses on the intersection of Artificial Intelligence and Open Science in the field of Research Software Engineering. he objective is to apply text analysis techniques to open-access research articles using Grobid. Key tasks include:
 
 - **Extracting and processing the full text** from a set of 10 open-access research papers.
@@ -58,17 +60,21 @@ conda activate your_environment_name
 
 Once everything is installed, you can run `pip freeze` to check that all dependencies have been installed correctly and proceed to execution.
 
-# Execution Instructions
+## Run the Grobid Server
+
+Start the Grobid server before running the script:
+
+```bash
+docker run -d --name grobid-server -p 8070:8070 -p 8071:8071 lfoppiano/grobid:0.8.0
+```
+
+This command runs the Grobid server in the background (`-d`).
+
+## Execution Instructions
 
 To run the program, simply place the articles you want to process in the `papers/` folder. The script will analyze these papers and store the xml results in the `output/` directory, and the keyword clouds, figures and links in the `results/` directory.
 
-Once everything is set up, navigate to the main project folder by running:
-
-```bash
-cd open-science-ai-rse
-```
-
-After that, you can execute the main script with the following command:
+Execute the main script with the following command:
 
 ```bash
 python3 scripts/main.py
