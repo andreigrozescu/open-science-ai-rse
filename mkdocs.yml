@@ -4,10 +4,10 @@ theme:
   name: mkdocs
 
 nav:
-  - Home: docs/index.md
-  - Installation: docs/installation.md
-  - Usage: docs/usage.md
-  - Scripts: docs/scripts.md
+  - Home: index.md
+  - Installation: installation.md
+  - Usage: usage.md
+  - Scripts: scripts.md
 
 markdown_extensions:
   - admonition
