@@ -6,77 +6,136 @@ I am a Computer Science student working on this project as part of my coursework
     -Generating a keyword cloud from the abstracts.
     -Visualizing the number of figures per article.
     -Compiling a list of links found in each paper.
-    
-    # Docker Installation Guide
+
+
+# Setting Up the Environment
+
+## Virtual Environment with Venv
+
+To use venv for creating the virtual environment, first, you need to install the tool by running:
+
+```bash
+python3 -m pip install --user virtualenv
+```
+
+Once installed, create the virtual environment with:
+
+```bash
+python3 -m venv your_environment_name
+```
+
+Then, activate it:
+
+```bash
+source your_environment_name/bin/activate
+```
+
+With the environment activated, you need to install the necessary modules for running the program. To do so, use the provided `requirements.txt` file to install all the dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Virtual Environment with Conda
+
+If you prefer to use conda, you need to install Anaconda first. After installing, create the environment using the `environment.yml` file with:
+
+```bash
+conda env create -f environment.yml
+```
+
+Then, activate the environment:
+
+```bash
+conda activate your_environment_name
+```
+
+Once everything is installed, you can run `pip freeze` to check that all dependencies have been installed correctly and proceed to execution.
+
+# Execution Instructions
+
+To run the program, simply place the articles you want to process in the `papers/` folder. The script will analyze these papers and store the results in the `output/` and `results/` directories.
+
+Once everything is set up, navigate to the main project folder by running:
+
+```bash
+cd open-science-ai-rse
+```
+
+After that, you can execute the main script with the following command:
+
+```bash
+python3 scripts/main.py
+```
+
+This will run all the necessary scripts. After the execution, the results will be available in the `output/` directory, and additional processed results like figures and links can be found in the `results/` directory.
+
+# Docker Installation Guide
 
 ## Prerequisites
+
 Before running the project using Docker, ensure you have the following installed:
-- **Docker**: Install it from [Docker's official website](https://docs.docker.com/get-docker/)
+
+- **Docker**: Install it from the [official Docker website](https://www.docker.com/get-started).
 
 ## 1. Clone the Repository
-First, clone the project repository from GitHub:
+
+Clone the project repository from GitHub:
+
 ```bash
 git clone https://github.com/andreigrozescu/open-science-ai-rse.git
 cd open-science-ai-rse
 ```
 
 ## 2. Build the Docker Image
-Since the `Dockerfile` is already provided in the repository, simply run the following command to build the Docker image:
+
+Since the Dockerfile is already provided in the repository, run the following command to build the Docker image:
+
 ```bash
 docker build -t open-science-ai-rse .
 ```
+
 This command:
-- Reads the `Dockerfile`
-- Pulls the Python 3.10 base image
-- Installs dependencies
-- Copies the project files
-- Creates the image `open-science-ai-rse`
+
+- Reads the Dockerfile.
+- Pulls the Python 3.10 base image.
+- Installs dependencies.
+- Copies the project files.
+- Creates the image `open-science-ai-rse`.
 
 ## 3. Verify the Image
+
 Once the build is complete, verify that the image was created successfully:
+
 ```bash
 docker images
 ```
+
 You should see `open-science-ai-rse` listed.
 
 ## 4. Run the Grobid Server (Required for Processing)
+
 Start the Grobid server before running the analysis:
+
 ```bash
 docker run -d --name grobid-server -p 8070:8070 -p 8071:8071 lfoppiano/grobid:0.8.0
 ```
+
 This command runs the Grobid server in the background (`-d`).
 
 ## 5. Run the Analysis Container
+
 Now, run the project container, connecting it to the Grobid server:
-```bash
-docker run --rm --name paper_analysis --network="host" \
-    -v $(pwd)/papers:/app/papers \
-    -v $(pwd)/output:/app/output \
-    open-science-ai-rse
-```
-Explanation:
-- `--rm`: Deletes the container after execution
-- `--network="host"`: Ensures the container can communicate with Grobid
-- `-v $(pwd)/papers:/app/papers`: Maps local `papers/` folder to the container
-- `-v $(pwd)/output:/app/output`: Stores results in the local `output/` folder
 
-## 6. (Optional) Check Logs
-To monitor the execution logs:
 ```bash
-docker logs -f paper_analysis
+docker run --rm --name paper_analysis --network="host"     -v $(pwd)/papers:/app/papers     -v $(pwd)/output:/app/output     open-science-ai-rse
 ```
 
-## 7. Stop and Clean Up
-After execution, you can stop and remove all containers:
-```bash
-docker stop grobid-server
-```
-If needed, remove all containers and images:
-```bash
-docker system prune -a
-```
+### Explanation:
 
-## Conclusion
-You have successfully deployed and run the project using Docker. The analysis results can be found in the `output/` directory.
+- `--rm`: Deletes the container after execution.
+- `--network="host"`: Ensures the container can communicate with Grobid.
+- `-v $(pwd)/papers:/app/papers`: Maps the local `papers/` folder to the container.
+- `-v $(pwd)/output:/app/output`: Stores results in the local `output/` folder.
 
 
