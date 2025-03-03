@@ -11,7 +11,7 @@ RUN git clone https://github.com/andreigrozescu/open-science-ai-rse.git /app
 WORKDIR /app
 
 # Instalar dependencias
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r docs/requirements.txt
 
 # Ejecutar el script principal
 CMD ["python", "scripts/main.py"]

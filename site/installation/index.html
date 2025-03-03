@@ -95,7 +95,40 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#docker-installation-guide" class="nav-link">Docker Installation Guide</a>
+            <li class="nav-item" data-bs-level="2"><a href="#run-the-grobid-server" class="nav-link">Run the Grobid Server</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#execution-instructions" class="nav-link">Execution Instructions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#docker-installation-guide" class="nav-link">Docker Installation Guide</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#prerequisites" class="nav-link">Prerequisites</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#1-clone-the-repository" class="nav-link">1. Clone the Repository</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-build-the-docker-image" class="nav-link">2. Build the Docker Image</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-verify-the-image" class="nav-link">3. Verify the Image</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-run-the-grobid-server-required-for-processing" class="nav-link">4. Run the Grobid Server (Required for Processing)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5-run-the-analysis-container" class="nav-link">5. Run the Analysis Container</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -130,23 +163,36 @@
 </code></pre></div>
 
 <p>Then, activate the environment:</p>
-<div class="codehilite"><pre><span></span><code>conda<span class="w"> </span>activate<span class="w"> </span>your_environment_name
+<div class="codehilite"><pre><span></span><code>conda<span class="w"> </span>activate<span class="w"> </span>open-science-env
 </code></pre></div>
 
 <p>Once everything is installed, you can run <code>pip freeze</code> to check that all dependencies have been installed correctly and proceed to execution.</p>
-<h2 id="docker-installation-guide">Docker Installation Guide<a class="headerlink" href="#docker-installation-guide" title="Permanent link">&para;</a></h2>
-<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
+<h2 id="run-the-grobid-server">Run the Grobid Server<a class="headerlink" href="#run-the-grobid-server" title="Permanent link">&para;</a></h2>
+<p>Start the Grobid server before running the script:</p>
+<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>grobid-server<span class="w"> </span>-p<span class="w"> </span><span class="m">8070</span>:8070<span class="w"> </span>-p<span class="w"> </span><span class="m">8071</span>:8071<span class="w"> </span>lfoppiano/grobid:0.8.0
+</code></pre></div>
+
+<p>This command runs the Grobid server in the background (<code>-d</code>).</p>
+<h2 id="execution-instructions">Execution Instructions<a class="headerlink" href="#execution-instructions" title="Permanent link">&para;</a></h2>
+<p>To run the program, simply place the articles you want to process in the <code>papers/</code> folder. The script will analyze these papers and store the xml results in the <code>output/</code> directory, and the keyword clouds, figures and links in the <code>results/</code> directory.</p>
+<p>Execute the main script with the following command:</p>
+<div class="codehilite"><pre><span></span><code>python3<span class="w"> </span>scripts/main.py
+</code></pre></div>
+
+<p>This will run all the necessary scripts. After the execution, the results will be available in the <code>output/</code> directory, and additional processed results like figures and links can be found in the <code>results/</code> directory.</p>
+<h1 id="docker-installation-guide">Docker Installation Guide<a class="headerlink" href="#docker-installation-guide" title="Permanent link">&para;</a></h1>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
 <p>Before running the project using Docker, ensure you have the following installed:</p>
 <ul>
 <li><strong>Docker</strong>: Install it from the <a href="https://www.docker.com/get-started">official Docker website</a>.</li>
 </ul>
-<h3 id="1-clone-the-repository">1. Clone the Repository<a class="headerlink" href="#1-clone-the-repository" title="Permanent link">&para;</a></h3>
+<h2 id="1-clone-the-repository">1. Clone the Repository<a class="headerlink" href="#1-clone-the-repository" title="Permanent link">&para;</a></h2>
 <p>Clone the project repository from GitHub:</p>
 <div class="codehilite"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/andreigrozescu/open-science-ai-rse.git
 <span class="nb">cd</span><span class="w"> </span>open-science-ai-rse
 </code></pre></div>
 
-<h3 id="2-build-the-docker-image">2. Build the Docker Image<a class="headerlink" href="#2-build-the-docker-image" title="Permanent link">&para;</a></h3>
+<h2 id="2-build-the-docker-image">2. Build the Docker Image<a class="headerlink" href="#2-build-the-docker-image" title="Permanent link">&para;</a></h2>
 <p>Since the Dockerfile is already provided in the repository, run the following command to build the Docker image:</p>
 <div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>open-science-ai-rse<span class="w"> </span>.
 </code></pre></div>
@@ -159,21 +205,21 @@
 <li>Copies the project files.</li>
 <li>Creates the image <code>open-science-ai-rse</code>.</li>
 </ul>
-<h3 id="3-verify-the-image">3. Verify the Image<a class="headerlink" href="#3-verify-the-image" title="Permanent link">&para;</a></h3>
+<h2 id="3-verify-the-image">3. Verify the Image<a class="headerlink" href="#3-verify-the-image" title="Permanent link">&para;</a></h2>
 <p>Once the build is complete, verify that the image was created successfully:</p>
 <div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>images
 </code></pre></div>
 
 <p>You should see <code>open-science-ai-rse</code> listed.</p>
-<h3 id="4-run-the-grobid-server-required-for-processing">4. Run the Grobid Server (Required for Processing)<a class="headerlink" href="#4-run-the-grobid-server-required-for-processing" title="Permanent link">&para;</a></h3>
+<h2 id="4-run-the-grobid-server-required-for-processing">4. Run the Grobid Server (Required for Processing)<a class="headerlink" href="#4-run-the-grobid-server-required-for-processing" title="Permanent link">&para;</a></h2>
 <p>Start the Grobid server before running the analysis:</p>
 <div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>grobid-server<span class="w"> </span>-p<span class="w"> </span><span class="m">8070</span>:8070<span class="w"> </span>-p<span class="w"> </span><span class="m">8071</span>:8071<span class="w"> </span>lfoppiano/grobid:0.8.0
 </code></pre></div>
 
 <p>This command runs the Grobid server in the background (<code>-d</code>).</p>
-<h3 id="5-run-the-analysis-container">5. Run the Analysis Container<a class="headerlink" href="#5-run-the-analysis-container" title="Permanent link">&para;</a></h3>
+<h2 id="5-run-the-analysis-container">5. Run the Analysis Container<a class="headerlink" href="#5-run-the-analysis-container" title="Permanent link">&para;</a></h2>
 <p>Now, run the project container, connecting it to the Grobid server:</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--name<span class="w"> </span>paper_analysis<span class="w"> </span>--network<span class="o">=</span><span class="s2">&quot;host&quot;</span><span class="w">     </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/papers:/app/papers<span class="w">     </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/output:/app/output<span class="w">     </span>open-science-ai-rse
+<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--name<span class="w"> </span>paper_analysis<span class="w"> </span>--network<span class="o">=</span><span class="s2">&quot;host&quot;</span><span class="w"> </span><span class="se">\ </span><span class="w">   </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/papers:/app/papers<span class="w"> </span><span class="se">\ </span><span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/output:/app/output<span class="w"> </span><span class="se">\ </span><span class="w">     </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/results:/app/results<span class="w"> </span><span class="se">\ </span><span class="w">       </span>open-science-ai-rse
 </code></pre></div>
 
 <h3 id="explanation">Explanation:<a class="headerlink" href="#explanation" title="Permanent link">&para;</a></h3>

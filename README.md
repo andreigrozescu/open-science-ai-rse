@@ -55,7 +55,7 @@ conda env create -f environment.yml
 Then, activate the environment:
 
 ```bash
-conda activate your_environment_name
+conda activate open-science-env
 ```
 
 Once everything is installed, you can run `pip freeze` to check that all dependencies have been installed correctly and proceed to execution.
@@ -140,7 +140,8 @@ This command runs the Grobid server in the background (`-d`).
 Now, run the project container, connecting it to the Grobid server:
 
 ```bash
-docker run --rm --name paper_analysis --network="host"     -v $(pwd)/papers:/app/papers     -v $(pwd)/output:/app/output     open-science-ai-rse
+docker run --rm --name paper_analysis --network="host" \    -v $(pwd)/papers:/app/papers \   -v $(pwd)/output:/app/output \      -v $(pwd)/results:/app/results \        open-science-ai-rse
+
 ```
 
 ### Explanation:

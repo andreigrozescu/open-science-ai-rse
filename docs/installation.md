@@ -37,21 +37,42 @@ conda env create -f environment.yml
 Then, activate the environment:
 
 ```bash
-conda activate your_environment_name
+conda activate open-science-env
 ```
 
 Once everything is installed, you can run `pip freeze` to check that all dependencies have been installed correctly and proceed to execution.
 
+## Run the Grobid Server
 
-## Docker Installation Guide
+Start the Grobid server before running the script:
 
-### Prerequisites
+```bash
+docker run -d --name grobid-server -p 8070:8070 -p 8071:8071 lfoppiano/grobid:0.8.0
+```
+
+This command runs the Grobid server in the background (`-d`).
+
+## Execution Instructions
+
+To run the program, simply place the articles you want to process in the `papers/` folder. The script will analyze these papers and store the xml results in the `output/` directory, and the keyword clouds, figures and links in the `results/` directory.
+
+Execute the main script with the following command:
+
+```bash
+python3 scripts/main.py
+```
+
+This will run all the necessary scripts. After the execution, the results will be available in the `output/` directory, and additional processed results like figures and links can be found in the `results/` directory.
+
+# Docker Installation Guide
+
+## Prerequisites
 
 Before running the project using Docker, ensure you have the following installed:
 
 - **Docker**: Install it from the [official Docker website](https://www.docker.com/get-started).
 
-### 1. Clone the Repository
+## 1. Clone the Repository
 
 Clone the project repository from GitHub:
 
@@ -60,7 +81,7 @@ git clone https://github.com/andreigrozescu/open-science-ai-rse.git
 cd open-science-ai-rse
 ```
 
-### 2. Build the Docker Image
+## 2. Build the Docker Image
 
 Since the Dockerfile is already provided in the repository, run the following command to build the Docker image:
 
@@ -76,7 +97,7 @@ This command:
 - Copies the project files.
 - Creates the image `open-science-ai-rse`.
 
-### 3. Verify the Image
+## 3. Verify the Image
 
 Once the build is complete, verify that the image was created successfully:
 
@@ -86,7 +107,7 @@ docker images
 
 You should see `open-science-ai-rse` listed.
 
-### 4. Run the Grobid Server (Required for Processing)
+## 4. Run the Grobid Server (Required for Processing)
 
 Start the Grobid server before running the analysis:
 
@@ -96,12 +117,13 @@ docker run -d --name grobid-server -p 8070:8070 -p 8071:8071 lfoppiano/grobid:0.
 
 This command runs the Grobid server in the background (`-d`).
 
-### 5. Run the Analysis Container
+## 5. Run the Analysis Container
 
 Now, run the project container, connecting it to the Grobid server:
 
 ```bash
-docker run --rm --name paper_analysis --network="host"     -v $(pwd)/papers:/app/papers     -v $(pwd)/output:/app/output     open-science-ai-rse
+docker run --rm --name paper_analysis --network="host" \    -v $(pwd)/papers:/app/papers \   -v $(pwd)/output:/app/output \      -v $(pwd)/results:/app/results \        open-science-ai-rse
+
 ```
 
 ### Explanation:
