@@ -18,7 +18,8 @@ The project is designed to extract the data such as figures, links, and metadata
 
 
 ## License
-Distributed under the [MIT License](https://opensource.org/license/mit). See [LICENSE](hhttps://github.com/andreigrozescu/open-science-ai-rse/blob/main/LICENSE) for more information.
+Distributed under the [MIT License](https://opensource.org/license/mit). See [LICENSE](https://github.com/andreigrozescu/open-science-ai-rse/blob/main/LICENSE) for more information.
 
 Author: Andrei Iulian Grozescu
+
 Contact:  (andrei.grozescu@alumnos.upm.es)
