@@ -7,14 +7,14 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 		<fileDesc>
 			<titleStmt>
 				<title level="a" type="main">Some interesting topics provoked by the solar filament research in the past decade</title>
-				<funder ref="#_VmD66Pe">
-					<orgName type="full">Chinese foundations (NSFC</orgName>
-				</funder>
-				<funder ref="#_FPECbBQ">
+				<funder ref="#_SFCC3Ac">
 					<orgName type="full">Science and Technology Development Fund of Macau</orgName>
 				</funder>
-				<funder ref="#_zUSmhmK #_6JQwVPv #_kDdxb7t">
+				<funder ref="#_XP7CrKt #_6ZV2DMZ #_Sj9xW4C">
 					<orgName type="full">unknown</orgName>
+				</funder>
+				<funder ref="#_dkbnwms">
+					<orgName type="full">Chinese foundations (NSFC</orgName>
 				</funder>
 			</titleStmt>
 			<publicationStmt>
@@ -90,7 +90,7 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 		</fileDesc>
 		<encodingDesc>
 			<appInfo>
-				<application version="0.8.0" ident="GROBID" when="2025-03-04T11:09+0000">
+				<application version="0.8.0" ident="GROBID" when="2025-03-04T12:09+0000">
 					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
 					<ref target="https://github.com/kermitt2/grobid"/>
 				</application>
@@ -139,19 +139,19 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 <div><p>Acknowledgements Our research was supported by the <rs type="funder">Chinese foundations (NSFC</rs> <rs type="grantNumber">11533005</rs>, <rs type="grantNumber">11961131002</rs>, <rs type="grantNumber">11733003</rs>, and <rs type="grantNumber">U1731241</rs>). X.A.A. was supported by the <rs type="funder">Science and Technology Development Fund of Macau</rs> (<rs type="grantNumber">275/2017/A</rs>). PFC thanks <rs type="institution">ISSI-Beijing</rs> and <rs type="institution">ISSI</rs> for supporting team meetings on solar filaments. This paper is dedicated to <rs type="person">Prof. Yunchun Jiang</rs>, who trained many students in the filament research.</p></div>
 			</div>
 			<listOrg type="funding">
-				<org type="funding" xml:id="_VmD66Pe">
+				<org type="funding" xml:id="_dkbnwms">
 					<idno type="grant-number">11533005</idno>
 				</org>
-				<org type="funding" xml:id="_zUSmhmK">
+				<org type="funding" xml:id="_XP7CrKt">
 					<idno type="grant-number">11961131002</idno>
 				</org>
-				<org type="funding" xml:id="_6JQwVPv">
+				<org type="funding" xml:id="_6ZV2DMZ">
 					<idno type="grant-number">11733003</idno>
 				</org>
-				<org type="funding" xml:id="_FPECbBQ">
+				<org type="funding" xml:id="_SFCC3Ac">
 					<idno type="grant-number">U1731241</idno>
 				</org>
-				<org type="funding" xml:id="_kDdxb7t">
+				<org type="funding" xml:id="_Sj9xW4C">
 					<idno type="grant-number">275/2017/A</idno>
 				</org>
 			</listOrg>

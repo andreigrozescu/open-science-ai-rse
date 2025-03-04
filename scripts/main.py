@@ -7,13 +7,13 @@ import textwrap
 from wordcloud import WordCloud
 from tqdm import tqdm
 
-# Cargar configuración desde config.json
+# Load configuration from config.json
 with open('scripts/config.json', 'r') as config_file:
     config = json.load(config_file)
 
 GRODIB_URL = config.get("grobid_url", "http://localhost:8070/api/processFulltextDocument")
 
-# Carpeta de entrada y salida
+# Input and output directories
 INPUT_DIR = 'papers'
 OUTPUT_DIR = 'output'
 RESULTS_DIR = 'results'
@@ -21,39 +21,39 @@ RESULTS_DIR = 'results'
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 os.makedirs(RESULTS_DIR, exist_ok=True)
 
-# Función para enviar PDF a Grobid y recibir XML
+# Function to send PDFs to Grobid and receive XML
 def process_pdf(pdf_path):
     with open(pdf_path, 'rb') as f:
         files = {'input': f}
         response = requests.post(GRODIB_URL, files=files)
 
     if response.status_code == 200:
-        # Si la solicitud fue exitosa, obtenemos el XML
+        # If the request was successful, retrieve the XML content
         return response.text
     else:
-        # Si hubo un error, mostramos el código de error
-        print(f"Error al procesar el archivo {pdf_path}: {response.status_code}")
+        # If there was an error, display the error code
+        print(f"Error processing file {pdf_path}: {response.status_code}")
         return None
 
-# Procesar todos los PDFs en la carpeta papers
-for pdf_file in tqdm(os.listdir(INPUT_DIR), desc="Procesando documentos"):
+# Process all PDFs in the papers directory
+for pdf_file in tqdm(os.listdir(INPUT_DIR), desc="Processing documents"):
     if pdf_file.endswith(".pdf"):
         pdf_path = os.path.join(INPUT_DIR, pdf_file)
         
-        # Llamar a Grobid para extraer el XML
+        # Call Grobid to extract the XML
         xml_content = process_pdf(pdf_path)
 
         if xml_content:
-            # Guardar el contenido XML en un archivo en la carpeta output
+            # Save the XML content in a file in the output directory
             xml_filename = f"{os.path.splitext(pdf_file)[0]}.xml"
             xml_path = os.path.join(OUTPUT_DIR, xml_filename)
 
             with open(xml_path, 'w', encoding='utf-8') as xml_file:
                 xml_file.write(xml_content)
 
-            print(f"XML guardado en: {xml_path}")
+            print(f"XML saved in: {xml_path}")
 
-# ---------- 1. Generar la nube de palabras clave ----------
+# Generate the keyword cloud
 def generate_wordcloud():
     all_text = ""
     for xml_file in os.listdir(OUTPUT_DIR):
@@ -77,11 +77,11 @@ def generate_wordcloud():
         plt.title("Keyword Cloud")
         plt.savefig(os.path.join(RESULTS_DIR, "wordcloud.png"), format='png')
         plt.close()
-        print("Nube de palabras clave generada.")
+        print("Keyword cloud generated.")
     else:
-        print("No se encontraron abstracts para generar la nube de palabras.")
+        print("No abstracts found to generate the word cloud.")
 
-# ---------- 2. Contar y visualizar el número de figuras por artículo ----------
+# Count and visualize the number of figures per article 
 def count_figures():
     figures_count = {}
     for xml_file in os.listdir(OUTPUT_DIR):
@@ -99,11 +99,11 @@ def count_figures():
         plt.title("Number of Figures per Article")
         plt.savefig(os.path.join(RESULTS_DIR, "figures_count.png"), format='png')
         plt.close()
-        print("Visualización del número de figuras generada.")
+        print("Figure count visualization generated.")
     else:
-        print("No se encontraron figuras en los artículos.")
+        print("No figures found in the articles.")
 
-# ---------- 3. Extraer y guardar enlaces de cada paper ----------
+# Extract and save links from each paper
 def extract_links():
     links = {}
     for xml_file in os.listdir(OUTPUT_DIR):
@@ -120,12 +120,13 @@ def extract_links():
     
     with open(os.path.join(RESULTS_DIR, "extracted_links.txt"), "w") as f:
         for article, urls in links.items():
-            f.write(f'Articulo: {article}\nLinks: {" ".join(urls)}\n\n')
-    print("Lista de enlaces extraída y guardada.")
+            f.write(f'Article: {article}\nLinks: {" ".join(urls)}\n\n')
+    print("List of extracted links saved.")
 
-# Ejecutar las funciones
+# Execute functions
 generate_wordcloud()
 count_figures()
 extract_links()
 
-print("Procesamiento completo.")
+print("Processing complete.")
+

@@ -160,3 +160,9 @@ print("Procesamiento completo.")
 - **wordcloud.png**: A word cloud image showing the most common words in the abstracts.
 - **figures_count.png**: A bar chart showing the number of figures in each article.
 - **extracted_links.txt**: A text file containing a list of URLs found in each article.
+
+![Word Cloud](results/wordcloud.png)
+
+![Figures Count](results/figures_count.png)
+
+![text file](results/extracted_links.txt)

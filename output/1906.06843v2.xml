@@ -7,7 +7,7 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 		<fileDesc>
 			<titleStmt>
 				<title level="a" type="main">Predicting Research Trends with Semantic and Neural Networks with an application in Quantum Physics</title>
-				<funder ref="#_xuBxsnf">
+				<funder ref="#_6rMAkCG">
 					<orgName type="full">unknown</orgName>
 				</funder>
 			</titleStmt>
@@ -92,7 +92,7 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 		</fileDesc>
 		<encodingDesc>
 			<appInfo>
-				<application version="0.8.0" ident="GROBID" when="2025-03-04T11:09+0000">
+				<application version="0.8.0" ident="GROBID" when="2025-03-04T12:09+0000">
 					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
 					<ref target="https://github.com/kermitt2/grobid"/>
 				</application>
@@ -140,7 +140,7 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 <div><head>ACKNOWLEDGEMENTS</head><p>MK thanks <rs type="person">James A. Evans</rs> and <rs type="person">Sasha Belikov</rs> for exciting discussions of metaknowledge research and automation of science, and <rs type="person">Jacob G. Foster</rs> for a short but influencial conversation at the <rs type="programName">International Symposium on Science of Science 2016</rs>. Furthermore, we would like to acknowledge <rs type="person">Nora Tischler</rs>, <rs type="person">Armin Hochrainer</rs>, <rs type="person">Robert Fickler</rs>, <rs type="person">Radek Lapkiewicz</rs>, <rs type="person">Manuel Erhard</rs> and <rs type="person">Philipp Haslinger</rs> for many in-</p></div>
 			</div>
 			<listOrg type="funding">
-				<org type="funding" xml:id="_xuBxsnf">
+				<org type="funding" xml:id="_6rMAkCG">
 					<orgName type="program" subtype="full">International Symposium on Science of Science 2016</orgName>
 				</org>
 			</listOrg>

@@ -7,11 +7,11 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 		<fileDesc>
 			<titleStmt>
 				<title level="a" type="main">A framework for improving the accessibility of research papers on arXiv.org</title>
-				<funder ref="#_t385ecK">
-					<orgName type="full">National Science Foundation</orgName>
-				</funder>
-				<funder ref="#_feaUmkk">
+				<funder ref="#_NDk7sSq">
 					<orgName type="full">NASA</orgName>
+				</funder>
+				<funder ref="#_EPPadVd">
+					<orgName type="full">National Science Foundation</orgName>
 				</funder>
 			</titleStmt>
 			<publicationStmt>
@@ -72,7 +72,7 @@ xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.co
 		</fileDesc>
 		<encodingDesc>
 			<appInfo>
-				<application version="0.8.0" ident="GROBID" when="2025-03-04T11:08+0000">
+				<application version="0.8.0" ident="GROBID" when="2025-03-04T12:08+0000">
 					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
 					<ref target="https://github.com/kermitt2/grobid"/>
 				</application>
@@ -121,10 +121,10 @@ Read Research elicited the highest number of comments, followed by Prepare my Do
 <div><head>Acknowledgements</head><p>This material is based upon work supported by the <rs type="funder">National Science Foundation</rs> under Award No. <rs type="grantNumber">OAC-2311521</rs> and by <rs type="funder">NASA</rs> under award No. <rs type="grantNumber">20-OSTFL20-0053</rs>. Any opinions, findings and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation or of <rs type="funder">NASA</rs>.</p></div>
 			</div>
 			<listOrg type="funding">
-				<org type="funding" xml:id="_t385ecK">
+				<org type="funding" xml:id="_EPPadVd">
 					<idno type="grant-number">OAC-2311521</idno>
 				</org>
-				<org type="funding" xml:id="_feaUmkk">
+				<org type="funding" xml:id="_NDk7sSq">
 					<idno type="grant-number">20-OSTFL20-0053</idno>
 				</org>
 			</listOrg>
