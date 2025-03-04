@@ -174,10 +174,9 @@ This helps in analyzing the visual content included in the papers.
 ---
 
 ### Extracted Links  
-A list of all hyperlinks found in the papers is stored in a text file.  
+A list of all hyperlinks found in the papers is stored in a ![text file](results/extracted_links.txt).  
 This provides an overview of referenced external sources.  
 
-![Links File](results/extracted_links.txt)
 
 
 
