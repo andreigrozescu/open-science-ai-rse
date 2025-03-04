@@ -2,7 +2,7 @@
 [![Documentation Status](https://readthedocs.org/projects/open-science-ai-rse/badge/?version=latest)](https://open-science-ai-rse.readthedocs.io/en/latest/?badge=latest)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14962610.svg)](https://doi.org/10.5281/zenodo.14962610)
 ## Description
-This project, developed as part of my Computer Science coursework, focuses on the intersection of Artificial Intelligence and Open Science in the field of Research Software Engineering. he objective is to apply text analysis techniques to open-access research articles using Grobid. Key tasks include:
+This project, developed as part of my Computer Science coursework, focuses on the intersection of Artificial Intelligence and Open Science in the field of Research Software Engineering. The objective is to apply text analysis techniques to open-access research articles using Grobid. Key tasks include:
 
 - **Extracting and processing the full text** from a set of 10 open-access research papers.
 - **Generating insightful keyword clouds** based on abstracts to visualize key themes.
